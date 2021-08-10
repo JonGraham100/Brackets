@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bracket Challenge</title>
+
+
+</head>
+<body>
+
+<script>
+    function getString() {
+        return checkBrackets(document.getElementById("str").value);
+    }
+
+    function checkBrackets(strToCheck) {
+        //Since we only care about one character we can keep track of the number of them we see in the string
+        var numBrackets = 0;
+
+        for (var i = 0; i < strToCheck.length; i++) {
+            //If we see a { then we increment the number
+            if (strToCheck.charAt(i) == '{')
+                numBrackets++;
+            //If we see a } then we decrement the number and check to see if we have an extra }
+            else if (strToCheck.charAt(i) == '}') {
+                numBrackets--;
+                if (numBrackets < 0)
+                    return false;
+            }
+        }
+
+        //Once we process the entire string, we need to check if there were more { than }
+        if (numBrackets != 0)
+            return false;
+
+        return true;
+    }
+</script>
+
+String: <input id="str" type="text"><br>
+<!--<button type="button" onclick='checkBrackets(hello)'>Check</button>-->
+<button onclick='alert(getString())'>Check</button>
+<br/>
+</body>
+</html>
